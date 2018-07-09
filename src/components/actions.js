@@ -2,6 +2,7 @@ import axios from 'axios';
 const URL = 'http://reduxblog.herokuapp.com/api';
 const postKey = '?key=13ufheu2';
 const picKey = '?key=14ufheu2';
+const dateKey = '?key=15ufheu2';
 
 export const getJoke =()=> {
   return axios.get('http://api.icndb.com/jokes/random/200');
@@ -27,6 +28,19 @@ export function getPics() {
 
 export function createPics(post){
   return axios.post(`${URL}/posts${picKey}`,
+    {"title": post.title,
+      "content": post.content,
+      "categories": post.categories});
+}
+
+
+
+export function getDates() {
+  return axios.get(`${URL}/posts${dateKey}`);
+}
+
+export function createDate(post){
+  return axios.post(`${URL}/posts${dateKey}`,
     {"title": post.title,
       "content": post.content,
       "categories": post.categories});

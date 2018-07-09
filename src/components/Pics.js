@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {getPics, createPics } from './actions';
 import PropTypes from "prop-types";
 
-import { message, Button, Modal, Form, Input, Card, Row, Col, Spin , Icon, notification} from 'antd';
+import { message, Button, Modal, Form, Input, Card, Row, Col, Spin , Pagination, notification} from 'antd';
 
 const { Meta } = Card;
 const FormItem = Form.Item;
@@ -91,7 +91,7 @@ class Pics extends Component {
       if(values.content.length>0) {
         createPics(values);
         openNotification('success');
-        this.context.router.history.push('/');
+        (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/pics'); }, 500));
       } else if (values.content.length=0){
         message.error('please enter a url');
       }
@@ -111,39 +111,40 @@ class Pics extends Component {
     return (
       <div>
         {this.state.loading&&<Spin size='large'/>}
-        {this.state.posts?
-          <div>
-            <Row>
-              <Col span={20}>
-                {this.state.posts.map(post => {
-                  return (
-                    <Card
-                      hoverable
-                      style={{ width: 540, marginBottom:10, marginLeft: 100 }}
-                      cover={<img src={post.content} />}
-                    >
-                      <Meta
-                        title={post.title}
-                        description={post.categories}
-                      />
-                    </Card>
-                  );
-                })
-                }
-              </Col>
-              <Col span={4}>
-                <Button type="primary" style={{height: 50}} onClick={this.showModal}>Post a picture</Button>
-              </Col>
-            </Row>
+        {!this.state.loading &&
+        <div>
+          <Row type="flex" justify="space-around" align="middle">
+            <Col span={24}>
+              <Button style={{width: '98%', height: 43}} onClick={this.showModal}>Post a picture</Button>
+            </Col>
+            {this.state.posts.map(post => {
+              return (
+                <Col span={8}>
+                  <Card
+                    hoverable
+                    style={{margin: 5}}
+                    cover={<img src={post.content}/>}
+                  >
+                    <Meta
+                      style={{height:'0.5em'}}
+                      title={<div>{post.title} {post.categories && <span style={{fontSize:'0.65em'}}>by {post.categories}</span>}</div>}
+                    />
+                  </Card>
+                </Col>
+              );
+            })
+            }
+          </Row>
 
-            < CollectionCreateForm
-              wrappedComponentRef={this.saveFormRef}
-              visible={this.state.visible}
-              onCancel={this.handleCancel}
-              onCreate={this.handleCreate}
-            />
-          </div>:
-          <Spin size='large'/>
+          < CollectionCreateForm
+            wrappedComponentRef={this.saveFormRef}
+            visible={this.state.visible}
+            onCancel={this.handleCancel}
+            onCreate={this.handleCreate}
+          />
+
+          <Pagination defaultCurrent={1} total={30}/>
+        </div>
         }
       </div>
     );
