@@ -10,22 +10,48 @@ import Pics from './components/Pics';
 import ChuckNorris from './components/ChuckNorris';
 import {getJoke} from './components/actions';
 
-import { Menu,Card, Row, Col, Affix } from 'antd';
+import { Menu,Card, Row, Col, Affix, Modal } from 'antd';
 
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 
+function info() {
+  Modal.info({
+    title: 'Here are some updates',
+    content: (
+      <div>
+        Added the following...
+        <ul>
+          <li>changed order of tabs</li>
+          <li>added delete button for every page</li>
+        </ul>
+        {/*Improved following...*/}
+        {/*<ul>*/}
+          {/*<li>on post page, you can now post longer than 100 characters</li>*/}
+          {/*<li style={{color:'red'}}>improved UI design on pics page</li>*/}
+        {/*</ul>*/}
+      </div>
+    ),
+    onOk() {},
+  });
+}
+
+
 class App extends Component {
   state = {
-    current: 'dashboard',
+    current: 'calendar',
     jokes:[],
     counter:0,
     timer:5000
   };
 
   componentWillMount() {
+    if(!localStorage.getItem('dog')) {
+      info();
+      localStorage.setItem('dog', 'Doggy');
+    }
     // getJoke()
     //   .then(res=>{
     //     let jokeArr = (res.data.value.map(({joke})=>{
@@ -35,7 +61,12 @@ class App extends Component {
     //   });
     // this.weirdCounter();
     // console.log(this.props.match);
+
+
   }
+
+
+
   //
   // weirdCounter(time){
   //   if(this.state.counter>198){
@@ -108,14 +139,14 @@ class App extends Component {
           <Menu.Item key="calendar">
             <Link to="/calendar">Calendar</Link>
           </Menu.Item>
-          <Menu.Item key="dashboard">
-            <Link to="/">Updates</Link>
-          </Menu.Item>
           <Menu.Item key="posts">
             <Link to="/posts">Posts</Link>
           </Menu.Item>
           <Menu.Item key="pics">
             <Link to="/pics">Pics</Link>
+          </Menu.Item>
+          <Menu.Item key="dashboard">
+            <Link to="/">Updates</Link>
           </Menu.Item>
           <SubMenu title={<span>Etc</span>}>
             <MenuItemGroup title="PROJECTS">

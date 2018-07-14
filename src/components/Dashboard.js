@@ -1,36 +1,11 @@
 import React, {Component } from 'react';
-import {Icon,Modal, Affix} from 'antd';
+import {Icon, Affix} from 'antd';
 
-
-function info() {
-  Modal.info({
-    title: 'Here are some updates',
-    content: (
-      <div>
-        Added the following...
-        <ul>
-          <li style={{color:'red'}}>calendar page</li>
-          <li>chuck norris jokes page</li>
-          <li>etc for small projects</li>
-        </ul>
-        Improved following...
-        <ul>
-          <li>on post page, you can now post longer than 100 characters</li>
-          <li style={{color:'red'}}>improved UI design on pics page</li>
-        </ul>
-      </div>
-    ),
-    onOk() {},
-  });
-}
 
 export class Dashboard extends Component {
 
   componentWillMount() {
-    if(!localStorage.getItem('myCat')) {
-      info();
-      localStorage.setItem('myCat', 'Tom');
-    }
+
   }
 
   render() {
