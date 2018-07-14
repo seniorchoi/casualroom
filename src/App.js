@@ -9,9 +9,10 @@ import WordCounter from './components/WordCounter';
 import Pics from './components/Pics';
 import ChuckNorris from './components/ChuckNorris';
 import Loading from './components/loading';
-import {getJoke} from './components/actions';
+import {getJoke, getPics} from './components/actions';
 
-import { Menu,Card, Row, Col, Affix, Modal } from 'antd';
+
+import { Menu,Carousel, Row, Col, Affix, Modal } from 'antd';
 
 
 const SubMenu = Menu.SubMenu;
@@ -42,6 +43,8 @@ function info() {
 
 class App extends Component {
   state = {
+    posts:[],
+    posts2:[],
     current: 'calendar',
     jokes:[],
     counter:0,
@@ -62,12 +65,16 @@ class App extends Component {
     //   });
     // this.weirdCounter();
     // console.log(this.props.match);
+    getPics()
+      .then(res=>{
+        this.setState({posts:res.data, loading: false});
 
+      });
 
   }
 
 
-
+  //
   //
   // weirdCounter(time){
   //   if(this.state.counter>198){
@@ -181,12 +188,47 @@ class App extends Component {
         </div>
           </Col>
           <Col span={4}>
-            <Affix offsetTop={10}>
             {/*<Card style={{marginRight:30}}>*/}
               {/*<p key={this.state.timer}>{this.state.timer/1000} seconds</p>*/}
             {/*<p key={counter}>{counter}. {jokes[counter]}</p>*/}
             {/*</Card>*/}
-            </Affix>
+
+              <Carousel autoplay autoplaySpeed={4000}>
+                {this.state.posts.map(pic=>{
+                  return (
+                    <div>
+                      <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
+                    </div>
+                  );
+                })}
+              </Carousel>
+              <Carousel autoplay autoplaySpeed={3000}>
+                {this.state.posts.map(pic=>{
+                  return (
+                    <div>
+                      <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
+                    </div>
+                  );
+                })}
+              </Carousel>
+              <Carousel autoplay autoplaySpeed={2000}>
+                {this.state.posts.map(pic=>{
+                  return (
+                    <div>
+                      <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
+                    </div>
+                  );
+                })}
+              </Carousel>
+              <Carousel autoplay autoplaySpeed={500}>
+                {this.state.posts.map(pic=>{
+                  return (
+                    <div>
+                      <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
+                    </div>
+                  );
+                })}
+              </Carousel>
           </Col>
         </Row>
       </div>
