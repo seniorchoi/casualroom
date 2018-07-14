@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getPics, createPics } from './actions';
+import {getPics, createPics, deletePics} from './actions';
 import PropTypes from "prop-types";
 
 import { message, Button, Modal, Form, Input, Card, Row, Col, Spin , Pagination, notification} from 'antd';
@@ -104,7 +104,13 @@ class Pics extends Component {
   saveFormRef = (formRef) => {
     this.formRef = formRef;
   };
-
+  handleDelete=(value)=>{
+    deletePics(value)
+      .then(()=>{
+        openNotification('success');
+        (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/pics'); }, 500))
+      })
+  };
 
 
   render() {
@@ -127,7 +133,13 @@ class Pics extends Component {
                   >
                     <Meta
                       style={{height:'0.5em'}}
-                      title={<div>{post.title} {post.categories && <span style={{fontSize:'0.65em'}}>by {post.categories}</span>}</div>}
+                      title={<div>{post.title} {post.categories && <span style={{fontSize:'0.65em'}}>by {post.categories}</span>}
+                        <Button
+                          onClick={() => {this.handleDelete(post.id)}}
+                          style={{height:23, float:'right'}}
+                        >delete</Button>
+                      </div>}
+
                     />
                   </Card>
                 </Col>

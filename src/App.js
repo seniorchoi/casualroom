@@ -26,66 +26,66 @@ class App extends Component {
   };
 
   componentWillMount() {
-    getJoke()
-      .then(res=>{
-        let jokeArr = (res.data.value.map(({joke})=>{
-          return [{joke}.joke].concat([{joke}.joke]);
-        }));
-        this.setState({jokes : jokeArr });
-      });
-    this.weirdCounter();
-    console.log(this.props.match);
+    // getJoke()
+    //   .then(res=>{
+    //     let jokeArr = (res.data.value.map(({joke})=>{
+    //       return [{joke}.joke].concat([{joke}.joke]);
+    //     }));
+    //     this.setState({jokes : jokeArr });
+    //   });
+    // this.weirdCounter();
+    // console.log(this.props.match);
   }
-
-  weirdCounter(time){
-    if(this.state.counter>198){
-      this.setState({counter:0})
-    }
-    setTimeout(()=>{
-        if(this.state.timer>500){
-          this.setState({timer:this.state.timer-500});
-          this.weirdCounter(this.state.timer);
-        } else if(this.state.timer>10){
-          this.setState({timer:this.state.timer-10});
-          this.weirdCounter(this.state.timer);
-        }
-          else if(this.state.timer>1){
-          this.setState({timer:this.state.timer-0.1});
-          this.weirdCounter(this.state.timer);
-        }
-
-        else{
-          this.weirdPlusCounter(time);
-        }
-        this.setState({counter:this.state.counter+1});
-      },time
-    )
-  }
-
-  weirdPlusCounter(time){
-    if(this.state.counter>198){
-      this.setState({counter:0})
-    }
-    setTimeout(()=>{
-        if(this.state.timer<100){
-          this.setState({timer:this.state.timer+5});
-          this.weirdPlusCounter(this.state.timer);
-        }
-        else if(this.state.timer<500){
-          this.setState({timer:this.state.timer+50});
-          this.weirdPlusCounter(this.state.timer);
-        }
-        else if(this.state.timer<5500){
-          this.setState({timer:this.state.timer+500});
-          this.weirdPlusCounter(this.state.timer);
-        }
-        else{
-          this.weirdCounter(time);
-        }
-        this.setState({counter:this.state.counter+1});
-      },time
-    )
-  }
+  //
+  // weirdCounter(time){
+  //   if(this.state.counter>198){
+  //     this.setState({counter:0})
+  //   }
+  //   setTimeout(()=>{
+  //       if(this.state.timer>500){
+  //         this.setState({timer:this.state.timer-500});
+  //         this.weirdCounter(this.state.timer);
+  //       } else if(this.state.timer>10){
+  //         this.setState({timer:this.state.timer-10});
+  //         this.weirdCounter(this.state.timer);
+  //       }
+  //         else if(this.state.timer>1){
+  //         this.setState({timer:this.state.timer-0.1});
+  //         this.weirdCounter(this.state.timer);
+  //       }
+  //
+  //       else{
+  //         this.weirdPlusCounter(time);
+  //       }
+  //       this.setState({counter:this.state.counter+1});
+  //     },time
+  //   )
+  // }
+  //
+  // weirdPlusCounter(time){
+  //   if(this.state.counter>198){
+  //     this.setState({counter:0})
+  //   }
+  //   setTimeout(()=>{
+  //       if(this.state.timer<100){
+  //         this.setState({timer:this.state.timer+5});
+  //         this.weirdPlusCounter(this.state.timer);
+  //       }
+  //       else if(this.state.timer<500){
+  //         this.setState({timer:this.state.timer+50});
+  //         this.weirdPlusCounter(this.state.timer);
+  //       }
+  //       else if(this.state.timer<5500){
+  //         this.setState({timer:this.state.timer+500});
+  //         this.weirdPlusCounter(this.state.timer);
+  //       }
+  //       else{
+  //         this.weirdCounter(time);
+  //       }
+  //       this.setState({counter:this.state.counter+1});
+  //     },time
+  //   )
+  // }
 
 
   handleDaClick = (e) => {
@@ -105,17 +105,17 @@ class App extends Component {
           selectedKeys={[this.state.current]}
           mode="horizontal"
         >
+          <Menu.Item key="calendar">
+            <Link to="/calendar">Calendar</Link>
+          </Menu.Item>
           <Menu.Item key="dashboard">
-            <Link to="/">Dashboard</Link>
+            <Link to="/">Updates</Link>
           </Menu.Item>
           <Menu.Item key="posts">
             <Link to="/posts">Posts</Link>
           </Menu.Item>
           <Menu.Item key="pics">
             <Link to="/pics">Pics</Link>
-          </Menu.Item>
-          <Menu.Item key="calendar">
-            <Link to="/calendar">Calendar</Link>
           </Menu.Item>
           <SubMenu title={<span>Etc</span>}>
             <MenuItemGroup title="PROJECTS">

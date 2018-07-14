@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getPosts, createPost } from './actions';
+import {getPosts, createPost, deletePosts, deleteDates} from './actions';
 import PropTypes from "prop-types";
 
 import { message, Button, Modal, Form, Input, Card, Row, Col, Spin , Icon, notification, Table} from 'antd';
@@ -105,6 +105,16 @@ class Posts extends Component {
     this.formRef = formRef;
   };
 
+  handleDelete=(value)=>{
+      console.log(value);
+      deletePosts(value)
+        .then(()=>{
+          openNotification('success');
+          (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/posts'); }, 500))
+        })
+
+  };
+
 
 
   render() {
@@ -120,9 +130,18 @@ class Posts extends Component {
               <Col span={24}>
                 {this.state.posts.map(post => {
                   return (
-                    <Card title={<div><Icon key={this.state.key}  style={{marginRight:5, color:'#9AD94C'}} type="twitter" />
+                    <Card
+                      title={<div><Icon key={this.state.key}
+                                            style={{marginRight:5, color:'#9AD94C'}}
+                                            type="twitter" />
 
-                      {post.title}</div>} key={post.title} extra={<div>{post.categories}</div>}
+                      {post.title}</div>} key={post.title}
+                            extra={<div>{post.categories}
+                              <Button
+                                onClick={() => {this.handleDelete(post.id)}}
+                                style={{marginLeft: 10}}
+                              >delete</Button>
+                            </div>}
                           style={{width: '95%', marginBottom: '1%'}}>
                       <div className='postContent'>{post.content}</div>
                     </Card>

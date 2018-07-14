@@ -20,10 +20,16 @@ export function createPost(post){
       "content": post.content,
       "categories": post.categories});
 }
+export function deletePosts(id) {
+  return axios.delete(`${URL}/posts/${id}${postKey}`);
+}
 
 export function getPics() {
   return axios.get(`${URL}/posts${picKey}`);
 
+}
+export function deletePics(id) {
+  return axios.delete(`${URL}/posts/${id}${picKey}`);
 }
 
 export function createPics(post){
