@@ -38,6 +38,9 @@ export function createPics(post){
 export function getDates() {
   return axios.get(`${URL}/posts${dateKey}`);
 }
+export function deleteDates(id) {
+  return axios.delete(`${URL}/posts/${id}${dateKey}`);
+}
 
 export function createDate(post){
   return axios.post(`${URL}/posts${dateKey}`,

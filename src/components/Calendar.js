@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import {Card, DatePicker, Row, Col, Input, Select, Icon } from 'antd';
-import {getDates, createDate} from "./actions";
+import {Card, DatePicker, Row, Col, Input, Select, Icon, Button } from 'antd';
+import {getDates, createDate, deleteDates} from "./actions";
 import PropTypes from "prop-types";
 import {notification} from "antd/lib/index";
 
@@ -36,7 +36,9 @@ class CalendarPage extends Component {
 
   componentWillMount() {
     getDates()
-      .then(post=>{this.setState({posts: post.data})});
+      .then(post=>{this.setState({posts: post.data});
+        console.log(post.data);
+      });
   }
 
   onOk(value) {
@@ -70,6 +72,14 @@ class CalendarPage extends Component {
     createDate(obj);
     openNotification('success');
     (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 500));
+  };
+  handleDelete=(value)=>{
+    console.log(value);
+    deleteDates(value)
+      .then(()=>{
+        openNotification('success');
+        (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 500))
+      })
   };
 
 
@@ -121,8 +131,12 @@ class CalendarPage extends Component {
                       <Icon style={{marginRight:5, color:'blue'}} type="global" />
                     {post.title} will be online to {post.categories} {String(post.content).slice(132)}
                     </div>}
-                    key={post.content}
-                    style={{width: '98%', margin: 10}}>
+                    key={post.id}
+                    style={{width: '98%', margin: 10}}
+                    extra={<Button
+                      onClick={() => {this.handleDelete(post.id)}}
+                    >delete</Button>}
+                  >
                 <div>different timezones</div>
                 <div className='postContent'>{String(post.content).slice(0,29)}</div>
                 <div className='postContent'>{String(post.content).slice(29,63)}</div>

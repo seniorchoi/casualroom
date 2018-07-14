@@ -148,10 +148,10 @@ class App extends Component {
           </Col>
           <Col span={4}>
             <Affix offsetTop={10}>
-            <Card style={{marginRight:30}}>
-              <p>{this.state.timer/1000} seconds</p>
-            <p>{counter}. {jokes[counter]}</p>
-            </Card>
+            {/*<Card style={{marginRight:30}}>*/}
+              {/*<p key={this.state.timer}>{this.state.timer/1000} seconds</p>*/}
+            {/*<p key={counter}>{counter}. {jokes[counter]}</p>*/}
+            {/*</Card>*/}
             </Affix>
           </Col>
         </Row>
