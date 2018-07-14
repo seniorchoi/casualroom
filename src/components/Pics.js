@@ -9,7 +9,7 @@ const FormItem = Form.Item;
 
 const openNotification = (type) => {
   notification[type]({
-    message: 'Posted Successfully',
+    message: 'Success',
   });
 };
 
@@ -91,7 +91,7 @@ class Pics extends Component {
       if(values.content.length>0) {
         createPics(values);
         openNotification('success');
-        (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/pics'); }, 500));
+        (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/pics'); }, 500));
       } else if (values.content.length=0){
         message.error('please enter a url');
       }
@@ -108,7 +108,7 @@ class Pics extends Component {
     deletePics(value)
       .then(()=>{
         openNotification('success');
-        (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/pics'); }, 500))
+        (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/pics'); }, 500))
       })
   };
 

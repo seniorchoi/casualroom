@@ -8,6 +8,7 @@ import Vsecret from './components/Vsecret';
 import WordCounter from './components/WordCounter';
 import Pics from './components/Pics';
 import ChuckNorris from './components/ChuckNorris';
+import Loading from './components/loading';
 import {getJoke} from './components/actions';
 
 import { Menu,Card, Row, Col, Affix, Modal } from 'antd';
@@ -133,7 +134,7 @@ class App extends Component {
       <div className="App">
         <Menu
           onClick={this.handleDaClick}
-          selectedKeys={[this.state.current]}
+          // selectedKeys={[this.state.current]}
           mode="horizontal"
         >
           <Menu.Item key="calendar">
@@ -146,7 +147,7 @@ class App extends Component {
             <Link to="/pics">Pics</Link>
           </Menu.Item>
           <Menu.Item key="dashboard">
-            <Link to="/">Updates</Link>
+            <Link to="/updates">Updates</Link>
           </Menu.Item>
           <SubMenu title={<span>Etc</span>}>
             <MenuItemGroup title="PROJECTS">
@@ -168,13 +169,15 @@ class App extends Component {
         <Row>
           <Col span={20}>
         <div style={{marginTop:'2%'}}>
-          <Route exact path="/" component={Dashboard}/>
+          <Route exact path="/" component={CalendarPage}/>
+          <Route path="/updates" component={Dashboard}/>
           <Route path="/posts" component={Posts}/>
           <Route path="/pics" component={Pics}/>
           <Route path="/vsecret" component={Vsecret}/>
           <Route path="/wordcounter" component={WordCounter}/>
           <Route path="/calendar" component={CalendarPage} />
           <Route path="/chucknorris" component={ChuckNorris} />
+          <Route path="/loading" component={Loading} />
         </div>
           </Col>
           <Col span={4}>

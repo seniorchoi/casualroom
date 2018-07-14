@@ -5,7 +5,6 @@ import {Icon, Affix} from 'antd';
 export class Dashboard extends Component {
 
   componentWillMount() {
-
   }
 
   render() {

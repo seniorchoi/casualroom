@@ -10,7 +10,7 @@ const { TextArea } = Input;
 
 const openNotification = (type) => {
   notification[type]({
-    message: 'Posted Successfully',
+    message: 'Success',
   });
 };
 
@@ -91,7 +91,7 @@ class Posts extends Component {
       if(values.content.length<5000) {
         createPost(values);
         openNotification('success');
-        (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/posts'); }, 500));
+        (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/posts'); }, 500));
       } else if (values.content.length>5000){
         message.error('The post was more than 5000 characters');
       }
@@ -110,7 +110,7 @@ class Posts extends Component {
       deletePosts(value)
         .then(()=>{
           openNotification('success');
-          (this.context.router.history.push('/'), setTimeout(()=>{ this.context.router.history.push('/posts'); }, 500))
+          (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/posts'); }, 500))
         })
 
   };
