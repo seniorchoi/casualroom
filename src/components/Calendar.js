@@ -43,13 +43,13 @@ class CalendarPage extends Component {
     console.log('onOk: ', value);
     let times=[];
     let krt = moment(value._d);
-    times.push(krt.format('YYYY-MM-DD HH:MM'));
+    times.push(krt.clone().tz("Asia/Seoul").format('YYYY-MM-DD HH:mm'));
     times.push('Korean time');
-    times.push(krt.clone().tz("America/Los_Angeles").format('YYYY-MM-DD HH:MM'));
+    times.push(krt.clone().tz("America/Los_Angeles").format('YYYY-MM-DD HH:mm'));
     times.push('Los Angeles time');
-    times.push(krt.clone().tz("America/New_York").format('YYYY-MM-DD HH:MM'));
+    times.push(krt.clone().tz("America/New_York").format('YYYY-MM-DD HH:mm'));
     times.push('New York time');
-    times.push(krt.clone().tz("Europe/Madrid").format('YYYY-MM-DD HH:MM'));
+    times.push(krt.clone().tz("Europe/Madrid").format('YYYY-MM-DD HH:mm'));
     times.push('Madrid time');
     times.push('Which is');
     times.push(moment(krt).fromNow());
