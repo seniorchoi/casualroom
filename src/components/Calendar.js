@@ -72,13 +72,13 @@ class CalendarPage extends Component {
         };
     createDate(obj);
     openNotification('success');
-    (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 500));
+    (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 700));
   };
   handleDelete=(value)=>{
     deleteDates(value)
       .then(()=>{
         openNotification('success');
-        (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 500))
+        (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 700))
       })
   };
 
@@ -106,7 +106,7 @@ class CalendarPage extends Component {
                 <div>
                   {this.state.toggle ?
                     <span
-                      style={{fontSize: 12, color: 'red'}}>(you must select the time at the bottom of calendar and click ok)</span> :
+                      style={{fontSize: 12, color: 'red'}}>(you must click ok after selecting <span style={{fontSize:15}}>the time</span> at the bottom of the calendar)</span> :
                     <span> </span>
                   }
                 </div>
@@ -138,7 +138,10 @@ class CalendarPage extends Component {
                     title={
                       <div>
                         <Icon style={{marginRight: 5, color: 'blue'}} type="global"/>
-                        {post.title} will be online to {post.categories} {String(post.content).slice(132)} which is...
+                        {post.title} {moment(String(post.content).slice(0, 15),'YYYY-MM-DD HH:mm').fromNow().slice(0,1)==='i'?'will be':'was'} online {post.categories+' '}
+                         <span
+                          style={moment(String(post.content).slice(0, 15),'YYYY-MM-DD HH:mm').fromNow().slice(0,1)==='i'?{color:'blue'}:{color:'green'}}
+                         >{moment(String(post.content).slice(0, 15),'YYYY-MM-DD HH:mm').fromNow()}</span>
                       </div>}
                     key={post.id}
                     style={{width: '98%', margin: 10}}
@@ -148,6 +151,7 @@ class CalendarPage extends Component {
                       }}
                     >delete</Button>}
                   >
+                    {console.log(moment(String(post.content).slice(0, 15),'YYYY-MM-DD HH:mm').fromNow())}
                     <div className='postContent'>{String(post.content).slice(0, 29)}</div>
                     <div className='postContent'>{String(post.content).slice(29, 63)}</div>
                     <div className='postContent'>{String(post.content).slice(63, 93)}</div>
