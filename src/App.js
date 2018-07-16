@@ -201,7 +201,7 @@ class App extends Component {
               <Carousel autoplay autoplaySpeed={4000}>
                 {this.state.posts.map(pic=>{
                   return (
-                    <div>
+                    <div key={pic.content}>
                       <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
                     </div>
                   );
@@ -210,7 +210,7 @@ class App extends Component {
               <Carousel autoplay autoplaySpeed={3000}>
                 {this.state.posts.map(pic=>{
                   return (
-                    <div>
+                    <div key={pic.content+'1'}>
                       <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
                     </div>
                   );
@@ -219,7 +219,7 @@ class App extends Component {
               <Carousel autoplay autoplaySpeed={2000}>
                 {this.state.posts.map(pic=>{
                   return (
-                    <div>
+                    <div key={pic.content+'2'}>
                       <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
                     </div>
                   );
@@ -228,7 +228,7 @@ class App extends Component {
               <Carousel autoplay autoplaySpeed={500}>
                 {this.state.posts.map(pic=>{
                   return (
-                    <div>
+                    <div key={pic.content+'3'}>
                       <img src={pic.content} style={{width:'100%', marginTop: 10}}/>
                     </div>
                   );

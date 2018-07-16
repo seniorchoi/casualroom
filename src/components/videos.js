@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getVids, createVids, deleteVids} from './actions';
 import PropTypes from "prop-types";
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
 
 import { message, Button, Modal, Form, Input, Card, Row, Col, Spin , Pagination, notification} from 'antd';
 
@@ -129,7 +129,7 @@ class Videos extends Component {
             </Col>
             {this.state.posts.map(post => {
               return (
-                <Col span={12}>
+                <Col span={12} key={post.content}>
                   <Card
                     hoverable
                     style={{margin: 5}}
@@ -149,7 +149,6 @@ class Videos extends Component {
                       </div>}
                     />
                   </Card>
-
                 </Col>
               );
             })
