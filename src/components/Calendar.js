@@ -38,7 +38,6 @@ class CalendarPage extends Component {
   componentWillMount() {
     getDates()
       .then(post=>{this.setState({posts: post.data, loading: false});
-        console.log(post.data);
       });
     console.log(moment().tz("Asia/Seoul").format('YYYY-MM-DD HH:mm'));
   }
@@ -57,15 +56,6 @@ class CalendarPage extends Component {
     times.push('Madrid time');
     times.push('Which is');
     times.push(moment(krt).fromNow());
-    //
-    // times.push(moment().tz("Asia/Seoul").format('YYYY-MM-DD HH:mm'));
-    // times.push('Korean time');
-    // times.push(moment().tz("America/Los_Angeles").format('YYYY-MM-DD HH:mm'));
-    // times.push('Los Angeles time');
-    // times.push(moment().tz("America/New_York").format('YYYY-MM-DD HH:mm'));
-    // times.push('New York time');
-    // times.push(moment().tz("Europe/Madrid").format('YYYY-MM-DD HH:mm'));
-    // times.push('Madrid time');
     this.setState({date:times.join(' '), toggle:false});
   }
 
@@ -85,7 +75,6 @@ class CalendarPage extends Component {
     (this.context.router.history.push('/loading'), setTimeout(()=>{ this.context.router.history.push('/calendar'); }, 500));
   };
   handleDelete=(value)=>{
-    console.log(value);
     deleteDates(value)
       .then(()=>{
         openNotification('success');
@@ -149,8 +138,7 @@ class CalendarPage extends Component {
                     title={
                       <div>
                         <Icon style={{marginRight: 5, color: 'blue'}} type="global"/>
-                        {post.title} will be online to {post.categories} {String(post.content).slice(132)}
-
+                        {post.title} will be online to {post.categories} {String(post.content).slice(132)} which is...
                       </div>}
                     key={post.id}
                     style={{width: '98%', margin: 10}}

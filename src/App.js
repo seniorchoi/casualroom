@@ -7,6 +7,7 @@ import Posts from "./components/Posts";
 import Vsecret from './components/Vsecret';
 import WordCounter from './components/WordCounter';
 import Pics from './components/Pics';
+import Videos from './components/videos';
 import ChuckNorris from './components/ChuckNorris';
 import Loading from './components/loading';
 import {getJoke, getPics} from './components/actions';
@@ -147,6 +148,9 @@ class App extends Component {
           <Menu.Item key="calendar">
             <Link to="/calendar">Calendar</Link>
           </Menu.Item>
+          <Menu.Item key="videos">
+            <Link to="/videos">Videos</Link>
+          </Menu.Item>
           <Menu.Item key="posts">
             <Link to="/posts">Posts</Link>
           </Menu.Item>
@@ -178,6 +182,7 @@ class App extends Component {
         <div style={{marginTop:'2%'}}>
           <Route exact path="/" component={CalendarPage}/>
           <Route path="/updates" component={Dashboard}/>
+          <Route path="/videos" component={Videos}/>
           <Route path="/posts" component={Posts}/>
           <Route path="/pics" component={Pics}/>
           <Route path="/vsecret" component={Vsecret}/>

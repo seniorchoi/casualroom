@@ -3,6 +3,7 @@ const URL = 'http://reduxblog.herokuapp.com/api';
 const postKey = '?key=13ufheu2';
 const picKey = '?key=14ufheu2';
 const dateKey = '?key=15ufheu2';
+const vidKey = '?key=16ufheu2';
 
 export const getJoke =()=> {
   return axios.get('http://api.icndb.com/jokes/random/200');
@@ -50,6 +51,21 @@ export function deleteDates(id) {
 
 export function createDate(post){
   return axios.post(`${URL}/posts${dateKey}`,
+    {"title": post.title,
+      "content": post.content,
+      "categories": post.categories});
+}
+
+
+export function getVids() {
+  return axios.get(`${URL}/posts${vidKey}`);
+}
+export function deleteVids(id) {
+  return axios.delete(`${URL}/posts/${id}${vidKey}`);
+}
+
+export function createVids(post){
+  return axios.post(`${URL}/posts${vidKey}`,
     {"title": post.title,
       "content": post.content,
       "categories": post.categories});
