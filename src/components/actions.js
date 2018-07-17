@@ -65,9 +65,8 @@ export function deleteVids(id) {
 }
 
 export function createVids(post){
-  console.log('http'+post.content.slice(5));
   return axios.post(`${URL}/posts${vidKey}`,
     {"title": post.title,
-      "content": 'http'+post.content.slice(5),
+      "content": post.content,
       "categories": post.categories});
 }

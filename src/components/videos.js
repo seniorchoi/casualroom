@@ -134,9 +134,11 @@ class Videos extends Component {
                     hoverable
                     style={{margin: 5}}
                     cover={
-                      <ReactPlayer
-                        style={{width: '70%'}}
-                        url={post.content} playing={false} />
+                      <div style={{display:'flex'}}>
+                        <ReactPlayer
+                          style={{flex:'1'}}
+                          url={post.content} playing={false} />
+                      </div>
                     }
                   >
                     <Meta
