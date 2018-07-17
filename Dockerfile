@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:10.6-alpine
 RUN mkdir -p /usr/src/app
 COPY package.json /usr/src/app
 RUN  cd /usr/src/app; npm install
