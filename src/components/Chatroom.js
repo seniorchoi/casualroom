@@ -20,8 +20,8 @@ class Chatroom extends Component {
 
 	componentDidMount() {
 		let arr= [];
-		// this.socket= io('https://issamariochatserver.herokuapp.com/');
-		this.socket= io('http://localhost:3000/');
+		this.socket= io('https://issamariochatserver.herokuapp.com/');
+		// this.socket= io('http://localhost:3000/');
 
 		this.socket.on('total message', (msg)=>{
 			console.log(msg);
