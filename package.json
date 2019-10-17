@@ -10,7 +10,7 @@
     "moment-timezone": "^0.5.21",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-iframe": "^1.2.0",
     "react-player": "^1.6.4",
     "react-router-dom": "^4.3.1",
