@@ -5,7 +5,7 @@
   "homepage": "https://seniorchoi.github.io/casualroom/",
   "dependencies": {
     "antd": "^3.6.5",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "gh-pages": "^2.1.1",
     "i": "^0.3.6",
     "moment": "^2.22.2",
