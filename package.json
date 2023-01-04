@@ -16,7 +16,7 @@
     "react-iframe": "^1.2.0",
     "react-player": "^1.6.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "5.0.1",
     "react-youtube": "^7.6.0",
     "redux": "^4.0.0",
     "socket.io": "^2.1.1",
